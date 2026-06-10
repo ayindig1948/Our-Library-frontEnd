@@ -1,16 +1,46 @@
-# React + Vite
+# Our Library — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single-page library management app built with **Vite + React 19**, secured with **Auth0**.
+Users can browse, check out, and return books; admins can add/remove books and fulfill requests.
 
-Currently, two official plugins are available:
+> Part of the **[Our Library](https://github.com/users/ayindig1948/projects/1)** project.
+> Backend API: **[Our-Library-backEnd](https://github.com/ayindig1948/Our-Library-backEnd)** (.NET 10 + SQL Server).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech stack
 
-## React Compiler
+- Vite 8, React 19, React Router 7
+- Auth0 (`@auth0/auth0-react`) — Authorization Code + PKCE
+- Tailwind CSS 4
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the ESLint configuration
+```bash
+npm install
+cp .env.example .env.local   # then fill in VITE_API_BASE_URL
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Environment
+
+All config is via `VITE_*` variables — see [`.env.example`](.env.example).
+These are inlined into the public client bundle, so **never put secrets here**.
+The only value you normally change is `VITE_API_BASE_URL` (the backend URL).
+
+| Variable | Purpose |
+| --- | --- |
+| `VITE_API_BASE_URL` | Base URL of the backend API (e.g. `https://localhost:7025`) |
+| `VITE_*` endpoint paths | Route suffixes appended in [`src/api.js`](src/api.js) |
+
+## Auth
+
+Auth0 `domain`, `clientId`, and `audience` are configured in [`src/main.jsx`](src/main.jsx).
+These are public SPA identifiers (PKCE flow) — security is enforced by the backend, which
+validates the JWT on every request. Make sure your app's origin is in Auth0's
+**Allowed Callback/Logout/Web Origin** lists.
+
+## Scripts
+
+- `npm run dev` — start dev server
+- `npm run build` — production build to `dist/`
+- `npm run preview` — preview the production build
+- `npm run lint` — run ESLint
