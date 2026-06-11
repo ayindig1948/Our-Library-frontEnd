@@ -1,4 +1,4 @@
-# Our Library — Frontend
+# Our Library Frontend
 
 A single-page library management app built with **Vite + React 19**, secured with **Auth0**.
 Users can browse, check out, and return books; admins can add/remove books and fulfill requests.
