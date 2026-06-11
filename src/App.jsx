@@ -44,7 +44,7 @@ function App() {
 <Route path="Admin" element={<AdminPage />} />
 <Route path="*" element={<ErrorPage />} />
     </Routes>
-    <Footer/>npm buld
+    <Footer/>
     </>
   );
 }

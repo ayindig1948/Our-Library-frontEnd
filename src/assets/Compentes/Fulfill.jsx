@@ -61,7 +61,7 @@ const Fulfill = () => {
      
      }             
               
-    return (  <div>
+    return (  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {booksToFulfill.map((book,index)=>(
             <BookItemCard key={index} book={book} Fulfill={FulfillBook}/>
         ))}
