@@ -53,25 +53,25 @@ const CheckInPage = () => {
                         placeholder="Book Title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                        className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base sm:py-2 sm:text-sm"
                     />
                     <input
                         type="text"
                         placeholder="Author First Name"
                         value={authorFirstName}
                         onChange={(e) => setAuthorFirstName(e.target.value)}
-                        className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                        className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base sm:py-2 sm:text-sm"
                     />
                     <input
                         type="text"
                         placeholder="Author Last Name"
                         value={authorLastName}
                         onChange={(e) => setAuthorLastName(e.target.value)}
-                        className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                        className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base sm:py-2 sm:text-sm"
                     />
                     <button
                         type="submit"
-                        className="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700"
+                        className="rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-purple-700 sm:py-2"
                     >
                         Check In
                     </button>

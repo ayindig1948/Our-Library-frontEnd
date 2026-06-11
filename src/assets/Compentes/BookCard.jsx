@@ -11,7 +11,7 @@ const BookCard = ({book ,checkout}) => {
             <span className="inline-block w-fit rounded-full bg-purple-100 px-3 py-1 text-xs font-medium text-purple-700 dark:bg-purple-900 dark:text-purple-200">
                 {book.category}
             </span>
-            {book.numberOfCopies<1&&(<p>Sorry no available books</p>)}
+            {book.numberOfCopies<1&&(<p>Sorry no books  available</p>)}
             <button className="mt-2 w-fit rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:hover:bg-gray-400" onClick={() => checkout(book)} disabled={book.numberOfCopies<1}>
                 Check Out Book
             </button>

@@ -134,31 +134,31 @@ if (!roles.includes("Admin")) {
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => setShowAddBook((prev) => !prev)}
-                className="cursor-pointer rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700"
+                className="w-full cursor-pointer rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-purple-700 sm:w-auto sm:py-2"
               >
                 {showAddBook ? "Hide Add Book" : "Add Book"}
               </button>
               <button
                 onClick={() => setShowAddNewCopy((prev) => !prev)}
-                className="cursor-pointer rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700"
+                className="w-full cursor-pointer rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-purple-700 sm:w-auto sm:py-2"
               >
                 {showAddNewCopy ? "Hide Add Copy" : "Add A Copy"}
               </button>
               <button
                 onClick={() => setShowFulfillBooks((prev) => !prev)}
-                className="cursor-pointer rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700"
+                className="w-full cursor-pointer rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-purple-700 sm:w-auto sm:py-2"
               >
                 {showFulfillBooks ? "Hide books to Fulfill" : "Show books to Fulfill"}
               </button>
               <button
                 onClick={() => setShowRemoveBook((prev) => !prev)}
-                className="cursor-pointer rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700"
+                className="w-full cursor-pointer rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-purple-700 sm:w-auto sm:py-2"
               >
                 {showRemoveBook ? "Hide Remove A book" : "Remove A book"}
               </button>
               <button
                 onClick={() => setShowRemoveItem((prev) => !prev)}
-                className="cursor-pointer rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700"
+                className="w-full cursor-pointer rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-purple-700 sm:w-auto sm:py-2"
               >
                 {showRemoveItem ? "Hide Remove A copy" : "Remove A copy"}
               </button>
