@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API } from "../../api";
 
 const RemoveItem = ({getAccessTokenSilently}) => {
     
@@ -21,7 +22,7 @@ const RemoveItem = ({getAccessTokenSilently}) => {
             e.preventDefault();
             try {
                 const token = await getAccessTokenSilently();
-                const res = await fetch("https://localhost:7025/removebookitem", {
+                const res = await fetch(API.removeBookItem(), {
                     method: "DELETE",
                     headers: {
                         "Content-Type": "application/json",
@@ -56,7 +57,7 @@ const RemoveItem = ({getAccessTokenSilently}) => {
                     placeholder="Book Title"
                     value={bookItem.title}
                     onChange={handleChangeItem}
-                    className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base sm:py-2 sm:text-sm"
                 />
             <input
                 type="text"
@@ -64,7 +65,7 @@ const RemoveItem = ({getAccessTokenSilently}) => {
                 placeholder="Author First Name"
                 value={bookItem.authorFirstName}
                 onChange={handleChangeItem}
-                className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base sm:py-2 sm:text-sm"
             />
             <input
                 type="text"
@@ -72,11 +73,11 @@ const RemoveItem = ({getAccessTokenSilently}) => {
                 placeholder="Author Last Name"
                 value={bookItem.authorLastName}
                 onChange={handleChangeItem}
-                className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base sm:py-2 sm:text-sm"
             />
             <button
                 type="submit"
-                className="mt-6 cursor-pointer rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700"
+                className="mt-6 cursor-pointer rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-purple-700 sm:py-2"
             >
                 Remove Book
             </button>

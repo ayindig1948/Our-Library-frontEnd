@@ -6,7 +6,7 @@ const AddBookItem = ({book,HandleChange,AddItem}) => {
           placeholder="Book Title"
           value={book.title}
           onChange={HandleChange}
-          className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base sm:py-2 sm:text-sm"
         />
         <input
           type="text"
@@ -14,7 +14,7 @@ const AddBookItem = ({book,HandleChange,AddItem}) => {
           placeholder="Author First Name"
           value={book.authorFirstName}
           onChange={HandleChange}
-          className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base sm:py-2 sm:text-sm"
         />
         <input
           type="text"
@@ -22,7 +22,7 @@ const AddBookItem = ({book,HandleChange,AddItem}) => {
           placeholder="Author Last Name"
           value={book.authorLastName}
           onChange={HandleChange}
-          className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base sm:py-2 sm:text-sm"
         />
         
         <input
@@ -32,11 +32,11 @@ const AddBookItem = ({book,HandleChange,AddItem}) => {
           placeholder="Number of Copies"
           value={book.numberOfItems}
           onChange={HandleChange}
-          className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-base sm:py-2 sm:text-sm"
         />
         <button
           type="submit"
-          className="mt-6 cursor-pointer rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700"
+          className="mt-6 cursor-pointer rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-purple-700 sm:py-2"
         >
           Add Book
         </button>
