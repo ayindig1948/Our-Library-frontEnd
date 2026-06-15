@@ -34,7 +34,7 @@ const RemoveItem = ({getAccessTokenSilently}) => {
                     throw new Error(`Could not delete copy ${res.status} ${res.statusText}`);
                 }
     
-                setMessage(`Deleted copy"${bookItem.title}"`);
+                setMessage(`Deleted copy "${bookItem.title}"`);
                 setError(null);
             } catch (error) {
                 console.error("Error deleting book:", error);

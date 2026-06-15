@@ -99,7 +99,7 @@ const NavBar = ({ user, logout }) => {
             </h2>
           </div>
           {MyBooks.length === 0 ? (
-            <p>you do not have any books checked out</p>
+            <p>You do not have any books checked out</p>
           ) : (
             <>
               {" "}

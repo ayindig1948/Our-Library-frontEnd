@@ -38,7 +38,7 @@ const AddBookItem = ({book,HandleChange,AddItem}) => {
           type="submit"
           className="mt-6 cursor-pointer rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-purple-700 sm:py-2"
         >
-          Add Book
+          Add  Copy
         </button>
       </form>
     ); 

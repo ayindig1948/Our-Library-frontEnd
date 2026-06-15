@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import AddBookCom from "../Compentes/AddBook";
-import AddBookItem from "../Compentes/AddBookItem";
-import BookItemCard from "../Compentes/BookItemCard";
-import Fulfill from "../Compentes/Fulfill";
-import RemoveBook from "../Compentes/RemoveBook";
-import RemoveItem from "../Compentes/RemoveItem";
+import AddBookCom from "../Components/AddBook";
+import AddBookItem from "../Components/AddBookItem";
+import BookItemCard from "../Components/BookItemCard";
+import Fulfill from "../Components/Fulfill";
+import RemoveBook from "../Components/RemoveBook";
+import RemoveItem from "../Components/RemoveItem";
 import { API } from "../../api";
 
 const AdminPage = () => {
@@ -29,8 +29,31 @@ const AdminPage = () => {
         title: "",
         authorFirstName: "",
         authorLastName: "",
-       numberOfItems:null,
+       numberOfItems:1,
     })
+    const [imageFile, setImageFile] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+
+    const handleFileChange = (e) => {
+        const file = e.target.files?.[0] ?? null;
+        setImageFile(file);
+        setImagePreview(file ? URL.createObjectURL(file) : null);
+    };
+
+    const uploadImage = async (token) => {
+        const formData = new FormData();
+        formData.append("file", imageFile);
+        const res = await fetch(API.uploadImage(), {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` }, // no Content-Type: browser sets multipart boundary
+            body: formData,
+        });
+        if (!res.ok) {
+            throw new Error(`Could not upload image: ${res.status} ${res.statusText}`);
+        }
+        const data = await res.json();
+        return data.url;
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -45,13 +68,20 @@ const AdminPage = () => {
         e.preventDefault();
         try {
             const token = await getAccessTokenSilently();
+
+            // Upload the cover image first (if one was chosen), then send its URL with the book.
+            let imageUrl = null;
+            if (imageFile) {
+                imageUrl = await uploadImage(token);
+            }
+
             const res = await fetch(API.addBook(), {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
-                body: JSON.stringify(book),
+                body: JSON.stringify({ ...book, imageUrl }),
             });
             if (!res.ok) {
                 throw new Error(`Could not add book: ${res.status} ${res.statusText}`);
@@ -73,6 +103,8 @@ const AdminPage = () => {
                 category: "",
                 numberOfItems: null,
             });
+            setImageFile(null);
+            setImagePreview(null);
         }
     };
     const AddBookItems = async (e) => {
@@ -92,7 +124,7 @@ const AdminPage = () => {
             }
             const text = await res.text();
             const data = text ? JSON.parse(text) : null;
-            setMessage(`${bookItem.numberOfItems}Copies of "${data?.title ?? bookItem.title}" added successfully!`);
+            setMessage(`${bookItem.numberOfItems} Copies of "${data?.title ?? bookItem.title}" added successfully!`);
             setError(null);
         } catch (error) {
             console.error("Error adding book copy:", error);
@@ -166,7 +198,7 @@ if (!roles.includes("Admin")) {
 
             <div className="mt-6 space-y-4">
               {showAddBook && (
-                <AddBookCom book={book} HandleChange={handleChange} AddBook={AddBook} />
+                <AddBookCom book={book} HandleChange={handleChange} AddBook={AddBook} onFileChange={handleFileChange} preview={imagePreview} />
               )}
               {showAddNewCopy && (
                 <AddBookItem book={bookItem} HandleChange={handleChangeItem} AddItem={AddBookItems} />

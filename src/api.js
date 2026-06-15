@@ -11,4 +11,8 @@ export const API = {
   removeBookItem: () => `${API_BASE}${import.meta.env.VITE_REMOVE_BOOK_ITEM}`,
   booksToFulfill: () => `${API_BASE}${import.meta.env.VITE_BOOKS_TO_FULFILL}`,
   fulfillBook: (bookId) => `${API_BASE}${import.meta.env.VITE_FULFILL_BOOK}/${bookId}`,
+  uploadImage: () => `${API_BASE}${import.meta.env.VITE_UPLOAD_IMAGE}`,
 };
+
+// Base URL used to resolve relative image paths (e.g. /uploads/x.jpg) returned by the API.
+export const API_BASE_URL = API_BASE;

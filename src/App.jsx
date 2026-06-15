@@ -1,13 +1,13 @@
-import BooksList from "./assets/Compentes/booksList";
-import HomePage from "./assets/Pagas/HomePage";
+import BooksList from "./assets/Components/booksList";
+import HomePage from "./assets/Pages/HomePage";
 import { useAuth0 } from "@auth0/auth0-react";
-import NavBar from "./assets/Compentes/NavBar";
-import CheckInPage from "./assets/Pagas/CheckIn";
+import NavBar from "./assets/Components/NavBar";
+import CheckInPage from "./assets/Pages/CheckIn";
 import { Route, Routes } from "react-router";
-import AboutPage from "./assets/Pagas/About";
-import ErrorPage from "./assets/Pagas/Error";
-import AdminPage from "./assets/Pagas/Admin";
-import Footer from "./assets/Compentes/Footer";
+import AboutPage from "./assets/Pages/About";
+import ErrorPage from "./assets/Pages/Error";
+import AdminPage from "./assets/Pages/Admin";
+import Footer from "./assets/Components/Footer";
 
 function App() {
   const {

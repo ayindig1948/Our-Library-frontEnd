@@ -1,5 +1,5 @@
-import NavBar from "../Compentes/NavBar";
-import BooksList from "../Compentes/booksList";
+import NavBar from "../Components/NavBar";
+import BooksList from "../Components/booksList";
 
 const HomePage = ({ isLoading, isAuthenticated, error, login, signup, logout, user }) => {
    

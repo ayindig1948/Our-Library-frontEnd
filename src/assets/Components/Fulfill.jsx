@@ -6,7 +6,7 @@ import { API } from "../../api";
 const Fulfill = () => {
   const [booksToFulfill, setBooksToFulfill] = useState([]);
   const [error, setError] = useState(null);
-  const [message,setMassage]=useState(null)
+  const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(true);
   
   const { getAccessTokenSilently } = useAuth0();
@@ -22,11 +22,11 @@ const Fulfill = () => {
         if(!res.ok){
             throw new Error(`could not fetch data: ${res.status} ${res.statusText}`)
         }
-        const data=await res.json()
-        setBooksToFulfill(data)
+        const data = await res.json();
+        setBooksToFulfill(data);
         
     } catch (error) {
-        console.error("getBooksTuFulfil failed:", error)
+        console.error("getBooksToFulfill failed:", error)
         setError(error.message)
     } finally{
         setLoading(false)
@@ -52,7 +52,7 @@ const Fulfill = () => {
         }
 
         setBooksToFulfill((prev) => prev.filter((b) => b.id !== book.id))
-        setMassage(`Fulfilled book id ${book.id}`)
+        setMessage(`Fulfilled book id ${book.id}`)
     } catch (error) {
         console.error("getBooksTuFulfil failed:", error)
         setError(error.message)
