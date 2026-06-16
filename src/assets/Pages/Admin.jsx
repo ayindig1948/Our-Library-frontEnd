@@ -172,7 +172,7 @@ if (!roles.includes("Admin")) {
 
             <div className="mt-6 space-y-4">
               {showAddBook && (
-                <AddBookCom book={book} HandleChange={handleChange} AddBook={AddBook} onFileChange={handleFileChange} preview={imagePreview} />
+                <AddBookCom book={book} HandleChange={handleChange} AddBook={AddBook}  preview={imagePreview} />
               )}
               {showAddNewCopy && (
                 <AddBookItem book={bookItem} HandleChange={handleChangeItem} AddItem={AddBookItems} />
