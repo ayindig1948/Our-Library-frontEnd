@@ -78,8 +78,7 @@ const AdminPage = () => {
                 category: "",
                 numberOfItems: null,
             });
-            setImageFile(null);
-            setImagePreview(null);
+          
         }
     };
     const AddBookItems = async (e) => {
