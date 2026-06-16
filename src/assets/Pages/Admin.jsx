@@ -31,29 +31,7 @@ const AdminPage = () => {
         authorLastName: "",
        numberOfItems:1,
     })
-    const [imageFile, setImageFile] = useState(null);
-    const [imagePreview, setImagePreview] = useState(null);
-
-    const handleFileChange = (e) => {
-        const file = e.target.files?.[0] ?? null;
-        setImageFile(file);
-        setImagePreview(file ? URL.createObjectURL(file) : null);
-    };
-
-    const uploadImage = async (token) => {
-        const formData = new FormData();
-        formData.append("file", imageFile);
-        const res = await fetch(API.uploadImage(), {
-            method: "POST",
-            headers: { Authorization: `Bearer ${token}` }, // no Content-Type: browser sets multipart boundary
-            body: formData,
-        });
-        if (!res.ok) {
-            throw new Error(`Could not upload image: ${res.status} ${res.statusText}`);
-        }
-        const data = await res.json();
-        return data.url;
-    };
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -70,10 +48,7 @@ const AdminPage = () => {
             const token = await getAccessTokenSilently();
 
             // Upload the cover image first (if one was chosen), then send its URL with the book.
-            let imageUrl = null;
-            if (imageFile) {
-                imageUrl = await uploadImage(token);
-            }
+            
 
             const res = await fetch(API.addBook(), {
                 method: "POST",
@@ -81,7 +56,7 @@ const AdminPage = () => {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
-                body: JSON.stringify({ ...book, imageUrl }),
+                body: JSON.stringify({ ...book }),
             });
             if (!res.ok) {
                 throw new Error(`Could not add book: ${res.status} ${res.statusText}`);
