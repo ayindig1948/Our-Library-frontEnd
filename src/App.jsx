@@ -27,6 +27,7 @@ function App() {
 
   return (
     <>
+   { console.log("API base:", import.meta.env.VITE_API_BASE_URL)}
     {isAuthenticated && <NavBar user={user} logout={logout} />  }
     <Routes>
 
