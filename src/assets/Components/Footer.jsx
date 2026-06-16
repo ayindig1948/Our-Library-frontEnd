@@ -9,7 +9,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="font-medium text-purple-600 hover:underline dark:text-purple-400"
                 >
-                    Ay Indig
+                    AY Indig
                 </a>
             </p>
         </footer>
