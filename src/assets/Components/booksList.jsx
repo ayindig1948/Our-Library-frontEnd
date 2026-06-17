@@ -9,7 +9,7 @@ const[books,setBooks]=useState([])
  const [loading,setLoading]=useState(true);
   const[error,setError]= useState(null)
   const[message,setMessage]= useState(null)
-useEffect(()=>{
+
    const  getBooks = async () => {
     try {
         const token = await getAccessTokenSilently();
@@ -34,7 +34,7 @@ useEffect(()=>{
         
 
     }
-
+useEffect(()=>{
         getBooks();
     },[]
 )
@@ -65,6 +65,7 @@ const CheckOut = async (book) => {
         console.log("Checkout successful:", data);
         setError(null);
         setMessage(`You have checked out "${book.title}" by ${book.authorFirstName} ${book.authorLastName}`);
+        await getBooks();
     } catch (error) {
         console.error("Checkout failed:", error);
         setMessage(null);

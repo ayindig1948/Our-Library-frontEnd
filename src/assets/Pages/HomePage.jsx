@@ -19,7 +19,7 @@ const HomePage = ({ isLoading, isAuthenticated, error, login, signup, logout, us
     <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 dark:bg-gray-900">
       <div className="w-full max-w-sm rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <h1 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
-          The Library
+         Welcome To The Library
         </h1>
         <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
           Sign in to browse and check out books.

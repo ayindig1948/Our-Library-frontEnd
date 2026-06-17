@@ -26,8 +26,7 @@ function App() {
     auth0Logout({ logoutParams: { returnTo: window.location.origin } });
 
   return (
-    <>
-   { console.log("API base:", import.meta.env.VITE_API_BASE_URL)}
+<>
     {isAuthenticated && <NavBar user={user} logout={logout} />  }
     <Routes>
 

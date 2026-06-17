@@ -24,7 +24,7 @@ const NavBar = ({ user, logout }) => {
       }
     };
     fetchMyBooks();
-  }, [showBooks]);
+  }, [showBooks===true]);
 
   const namespace = "https://libdemo.example.com";
   const roles = user?.[`${namespace}/roles`] || [];
@@ -33,7 +33,7 @@ const NavBar = ({ user, logout }) => {
     "cursor-pointer rounded-lg bg-purple-600 px-4 py-2.5 text-center text-sm font-medium text-white transition hover:bg-purple-700 sm:py-2";
 
   return (
-    <header className="relative flex items-center justify-between border-b border-gray-200 bg-blue-100 px-4 py-4 dark:border-gray-700 dark:bg-gray-800 sm:px-6">
+    <header className="relative flex flex-wrap items-center justify-between border-b border-gray-200 bg-blue-100 px-4 py-4 dark:border-gray-700 dark:bg-gray-800 sm:flex-nowrap sm:px-6">
       <div className="text-left">
         <h1 className="text-lg font-bold text-gray-900 dark:text-white sm:text-2xl">
           Welcome To The Library
@@ -66,7 +66,7 @@ const NavBar = ({ user, logout }) => {
       <nav
         className={
           (menuOpen ? "flex" : "hidden") +
-          " absolute left-0 right-0 top-full z-40 flex-col gap-3 border-b border-gray-200 bg-blue-100 p-4 dark:border-gray-700 dark:bg-gray-800 sm:static sm:flex sm:w-auto sm:flex-row sm:items-center sm:border-0 sm:bg-transparent sm:p-0 dark:sm:bg-transparent"
+          " mt-4 w-full flex-col gap-3 border-t border-gray-200 bg-blue-100 pt-4 dark:border-gray-700 dark:bg-gray-800 sm:mt-0 sm:flex sm:w-auto sm:flex-row sm:items-center sm:border-0 sm:bg-transparent sm:pt-0 dark:sm:bg-transparent"
         }
       >
       <NavLink to="/" onClick={() => setMenuOpen(false)} className={navLinkClass}>
@@ -103,7 +103,7 @@ const NavBar = ({ user, logout }) => {
           ) : (
             <>
               {" "}
-              <ul className="ax-h-60 overflow-y-auto divide-y divide-gray-100 pr-1">
+              <ul className="max-h-60 overflow-y-auto divide-y divide-gray-100 pr-1">
                 {MyBooks.map((item) => (
                   <li
                     key={item.id}
