@@ -9,6 +9,7 @@ const NavBar = ({ user, logout }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [MyBooks, setMyBooks] = useState([]);
   useEffect(() => {
+    if (!showBooks) return;
     const fetchMyBooks = async () => {
       try {
         const token = await getAccessTokenSilently();
@@ -17,6 +18,9 @@ const NavBar = ({ user, logout }) => {
             Authorization: `Bearer ${token}`,
           },
         });
+        if (!res.ok) {
+          throw new Error(`could not fetch data: ${res.status} ${res.statusText}`);
+        }
         const data = await res.json();
         setMyBooks(data);
       } catch (error) {
@@ -24,7 +28,7 @@ const NavBar = ({ user, logout }) => {
       }
     };
     fetchMyBooks();
-  }, [showBooks===true]);
+  }, [showBooks]);
 
   const namespace = "https://libdemo.example.com";
   const roles = user?.[`${namespace}/roles`] || [];
