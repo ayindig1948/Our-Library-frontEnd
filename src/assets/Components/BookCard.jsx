@@ -45,7 +45,7 @@ const BookCard = ({ book, checkout }) => {
                 {book.category}
             </span>
             {book.numberOfCopies < 1 && (<p>Sorry no books  available</p>)}
-            <button className="mt-2 w-fit rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:hover:bg-gray-400" onClick={() => checkout(book)} disabled={book.numberOfCopies < 1}>
+            <button className=" cursor-pointer mt-2 w-fit rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:hover:bg-gray-400 " onClick={() => checkout(book)} disabled={book.numberOfCopies < 1}>
                 Check Out Book
             </button>
         </div>
