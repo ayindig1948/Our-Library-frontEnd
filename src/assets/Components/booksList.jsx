@@ -2,6 +2,7 @@ import { useState,useEffect } from "react";
 
 import { useAuth0 } from '@auth0/auth0-react'
 import BookCard from "./BookCard";
+import Filter from "./Filter";
 import { API } from "../../api";
 const BooksList = () => {
     const { getAccessTokenSilently, user } = useAuth0();
@@ -9,7 +10,8 @@ const[books,setBooks]=useState([])
  const [loading,setLoading]=useState(true);
   const[error,setError]= useState(null)
   const[message,setMessage]= useState(null)
-
+  const[titleFilter,setTitleFilter]=useState('')
+const[categoryFilter,setCategoryFilter]=useState('')
    const  getBooks = async () => {
     try {
         const token = await getAccessTokenSilently();
@@ -38,6 +40,8 @@ useEffect(()=>{
         getBooks();
     },[]
 )
+const FilteredList=books.filter(book=>book.title.toLowerCase().includes(titleFilter.toLowerCase()) &&
+  book.category.toLowerCase().includes(categoryFilter.toLowerCase()))
 const CheckOut = async (book) => {
     try {
         const token = await getAccessTokenSilently();
@@ -75,12 +79,13 @@ const CheckOut = async (book) => {
 
     return (
     <div className="p-6">
+       <Filter setCategoryFilter={setCategoryFilter}setTitleFilter={setTitleFilter} titleFilter={titleFilter} categoryFilter={categoryFilter} />
         {loading && <p className="text-gray-500">Loading...</p>}
         {error && <p className="text-red-600">{error}</p>}
         {message && <p className="text-green-600">{message}</p>}
         {books && books.length > 0 ? (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {books.map((book,index) => (
+                {FilteredList.map((book,index) => (
                     <BookCard key={index} book={book} checkout={CheckOut}/>
                 ))}
             </div>

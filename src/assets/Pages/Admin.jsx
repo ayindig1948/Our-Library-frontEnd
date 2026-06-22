@@ -76,7 +76,7 @@ const AdminPage = () => {
                 authorLastName: "",
                 description: "",
                 category: "",
-                numberOfItems: null,
+                numberOfItems: 0,
             });
           
         }

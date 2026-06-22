@@ -8,6 +8,7 @@ import AboutPage from "./assets/Pages/About";
 import ErrorPage from "./assets/Pages/Error";
 import AdminPage from "./assets/Pages/Admin";
 import Footer from "./assets/Components/Footer";
+import { useIdleLogout } from "./assets/hooks/useIdleLogout";
 
 function App() {
   const {
@@ -24,6 +25,9 @@ function App() {
 
   const logout = () =>
     auth0Logout({ logoutParams: { returnTo: window.location.origin } });
+
+ 
+  useIdleLogout(logout, { enabled: isAuthenticated });
 
   return (
 <>
