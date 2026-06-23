@@ -5,6 +5,8 @@ import App from "./App.jsx";
 import './index.css'
 import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter } from "react-router";
+import { warmUp } from "./api";
+warmUp();
 
 const onRedirectCallback = (appState) => {
   // Remove the Auth0 ?code & ?state params from the URL after login

@@ -16,3 +16,17 @@ export const API = {
 
 // Base URL used to resolve relative image paths (e.g. /uploads/x.jpg) returned by the API.
 export const API_BASE_URL = API_BASE;
+
+// Fire-and-forget request that wakes the Azure App Service worker.
+// The backend sleeps after ~20 min idle (no "Always On" on Free/Shared tiers),
+// so the first real call after idle pays a 10-30s cold start. Pinging here at
+// page load lets the worker warm up in parallel with the Auth0 redirect, before
+// any authenticated data call fires.
+//
+// `no-cors` is intentional: we don't read the response (an opaque 401/404 is
+// fine — the request still reaches the worker and wakes it) and it avoids CORS
+// errors in the console for a request the server isn't set up to answer.
+export const warmUp = () => {
+  if (!API_BASE) return;
+  fetch(API_BASE, { mode: "no-cors" }).catch(() => {});
+};

@@ -8,11 +8,14 @@ const BooksList = () => {
     const { getAccessTokenSilently, user } = useAuth0();
 const[books,setBooks]=useState([])
  const [loading,setLoading]=useState(true);
+  const [slowLoad,setSlowLoad]=useState(false);
   const[error,setError]= useState(null)
   const[message,setMessage]= useState(null)
   const[titleFilter,setTitleFilter]=useState('')
 const[categoryFilter,setCategoryFilter]=useState('')
    const  getBooks = async () => {
+const slowTimer = setTimeout(() => setSlowLoad(true), 4000);
+    
     try {
         const token = await getAccessTokenSilently();
         const res= await fetch(API.getAllBooks(), {
@@ -26,14 +29,16 @@ const[categoryFilter,setCategoryFilter]=useState('')
         const data=await res.json()
         setBooks(data)
         //console.warn(data)
-        
+
     } catch (error) {
         console.error("getBooks failed:", error)
         setError(error.message)
     } finally{
+        clearTimeout(slowTimer)
+        setSlowLoad(false)
         setLoading(false)
     }
-        
+
 
     }
 useEffect(()=>{
@@ -80,7 +85,13 @@ const CheckOut = async (book) => {
     return (
     <div className="p-6">
        <Filter setCategoryFilter={setCategoryFilter}setTitleFilter={setTitleFilter} titleFilter={titleFilter} categoryFilter={categoryFilter} />
-        {loading && <p className="text-gray-500">Loading...</p>}
+        {loading && (
+            <p className="text-gray-500">
+                {slowLoad
+                    ? "Waking up the server — this can take up to ~30s on the first load. Hang tight…"
+                    : "Loading..."}
+            </p>
+        )}
         {error && <p className="text-red-600">{error}</p>}
         {message && <p className="text-green-600">{message}</p>}
         {books && books.length > 0 ? (
