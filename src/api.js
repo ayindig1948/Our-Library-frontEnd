@@ -6,6 +6,7 @@ export const API = {
   checkinBook: () => `${API_BASE}${import.meta.env.VITE_CHECKIN_BOOK}`,
   getCheckedOutBooks: () => `${API_BASE}${import.meta.env.VITE_GET_CHECKED_OUT_BOOKS}`,
   addBook: () => `${API_BASE}${import.meta.env.VITE_ADD_BOOK}`,
+  editBook: () => `${API_BASE}${import.meta.env.VITE_EDIT_BOOK}`,
   addBookItem: () => `${API_BASE}${import.meta.env.VITE_ADD_BOOK_ITEM}`,
   removeBook: () => `${API_BASE}${import.meta.env.VITE_REMOVE_BOOK}`,
   removeBookItem: () => `${API_BASE}${import.meta.env.VITE_REMOVE_BOOK_ITEM}`,

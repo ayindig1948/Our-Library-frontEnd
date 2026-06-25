@@ -65,11 +65,13 @@ const EditBook = ({ book, onClose, onSaved }) => {
           &times;
         </button>
 
-        <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-          Edit "{book.title}"
-        </h2>
+        
 
-        {roles.includes("Admin") ? (
+        {roles.includes("Admin") ? (<>
+            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+          Edit {book.title}
+        </h2>
+            
           <form onSubmit={sendEditRequest} className="flex flex-col gap-3">
             <input
               type="text"
@@ -102,9 +104,9 @@ const EditBook = ({ book, onClose, onSaved }) => {
               Submit
             </button>
           </form>
-        ) : (
+      </>  ) : (
           <p className="text-blue-600 dark:text-blue-400">
-            You're not authorized to edit
+            You're not authorized to edit you must be a admin
           </p>
         )}
 
