@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { API_BASE_URL } from "../../api";
+import EditBook from "./Edit";
 
-const BookCard = ({ book, checkout }) => {
+const BookCard = ({ book, checkout, refresh }) => {
     const [loaded, setLoaded] = useState(false);
     const [errored, setErrored] = useState(false);
+    const [showEdit, setShowEdit] = useState(false);
 
     const hasImage = Boolean(book.imageUrl) && !errored;
     const imageSrc = book.imageUrl ? `${API_BASE_URL}${book.imageUrl}` : null;
@@ -45,9 +47,25 @@ const BookCard = ({ book, checkout }) => {
                 {book.category}
             </span>
             {book.numberOfCopies < 1 && (<p>Sorry no books  available</p>)}
-            <button className=" cursor-pointer mt-2 w-fit rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:hover:bg-gray-400 " onClick={() => checkout(book)} disabled={book.numberOfCopies < 1}>
-                Check Out Book
-            </button>
+            <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+                <button className=" cursor-pointer rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-purple-700 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:hover:bg-gray-400 " onClick={() => checkout(book)} disabled={book.numberOfCopies < 1}>
+                    Check Out Book
+                </button>
+                <button
+                    className="cursor-pointer rounded-lg border border-purple-600 px-4 py-2 text-sm font-medium text-purple-700 transition hover:bg-purple-50 dark:border-purple-400 dark:text-purple-300 dark:hover:bg-gray-700"
+                    onClick={() => setShowEdit(true)}
+                >
+                    Edit
+                </button>
+            </div>
+
+            {showEdit && (
+                <EditBook
+                    book={book}
+                    onClose={() => setShowEdit(false)}
+                    onSaved={refresh}
+                />
+            )}
         </div>
     );
 }
